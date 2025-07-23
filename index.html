@@ -4,14 +4,16 @@
   <meta charset="UTF-8" />
   <title>Béranger Waterschoot</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Styles -->
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
-      margin: 0; padding: 0;
       height: 100%;
       font-family: Georgia, serif;
       color: #fff;
       background: #3e2f5b;
-      overflow: hidden;
+      overflow-x: hidden;
     }
     #particles {
       position: fixed;
@@ -25,99 +27,162 @@
       width: 100%;
       padding: 10px 20px;
       z-index: 2;
+      display: flex;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(3px);
+    }
+    .header .name {
       font-size: 1.2em;
       font-weight: bold;
     }
+    .header .nav {
+      margin-left: auto;
+    }
+    .header .nav a {
+      color: #c0c0c0;
+      margin-left: 15px;
+      text-decoration: none;
+    }
+    .header .nav a:hover {
+      color: #fff;
+    }
     .construction {
       position: fixed;
-      top: 40px; left: 20px;
+      top: 40px;
+      left: 20px;
       z-index: 2;
       font-size: 0.9em;
       color: #ccc;
     }
-    .content {
+    section {
       position: relative;
-      max-width: 600px;
-      margin: 120px auto;
-      padding: 20px;
-      z-index: 1;
-      background: rgba(255,255,255,0.1);
+      padding: 100px 20px;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.2);
       border-radius: 6px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      backdrop-filter: blur(4px);
-      text-align: center;
+      margin-top: 80px;
+      backdrop-filter: blur(3px);
+      z-index: 1;
     }
-    .expertise {
-      margin-top: 10px;
-      font-style: italic;
+    section + section {
+      margin-top: 50px;
     }
-    h1 {
-      font-size: 2em;
-      margin-bottom: 0.5em;
-    }
-    a {
+    .typed {
       color: #c0c0c0;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
     }
     .icons {
-      margin-top: 1.5em;
       font-size: 1.5em;
+      margin-top: 10px;
     }
     .icons a {
-      margin: 0 10px;
+      margin-right: 15px;
       color: #ccc;
     }
     .icons a:hover {
       color: #fff;
     }
   </style>
+
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
 
+  <!-- Background animation -->
   <div id="particles"></div>
 
-  <div class="header">Béranger Waterschoot</div>
-  <div class="construction">🚧 Website under construction</div>
-
-  <div class="content">
-    <h1>Welcome!</h1>
-    <div class="expertise">I am <span id="role"></span></div>
-    <p><a href="mailto:your@email.com">Email me</a></p>
-    <div class="icons">
-      <a href="https://github.com/WttBe" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/b%C3%A9ranger-waterschoot-46705368" target="_blank"><i class="fab fa-linkedin"></i></a>
-    </div>
+  <!-- Header with navigation -->
+  <div class="header">
+    <div class="name">Béranger Waterschoot</div>
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+      <a href="#resume">Resume</a>
+    </nav>
   </div>
 
-  <!-- jQuery & particleground -->
+  <!-- Construction notice -->
+  <div class="construction">🚧 Website under construction</div>
+
+  <!-- Sections -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I am <span class="typed"></span></p>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <p>Details about my work history...</p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <p>Descriptions of my portfolio projects...</p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <p>List of languages, frameworks, tools...</p>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <p>Details of my academic background...</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
+    <div class="icons">
+      <a href="https://github.com/WttBe" target="_blank" aria-label="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/béranger-waterschoot-46705368" target="_blank" aria-label="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </div>
+  </section>
+
+  <section id="resume">
+    <h2>Resume</h2>
+    <p><a href="assets/resume.pdf" target="_blank">Download my resume (PDF)</a></p>
+  </section>
+
+  <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script src="background/jquery.particleground.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
   <script>
-    $(document).ready(function() {
+    $(function () {
       $('#particles').particleground({
         dotColor: '#c0c0c0',
         lineColor: '#c0c0c0',
-        minSpeedX: 0.05, maxSpeedX: 0.2,
-        minSpeedY: 0.05, maxSpeedY: 0.2,
+        minSpeedX: 0.03,
+        maxSpeedX: 0.1,
+        minSpeedY: 0.03,
+        maxSpeedY: 0.1,
         density: 15000
       });
 
-      const roles = ['a Data Scientist', 'an Evolutionary Ecologist', 'a Fast Learner'];
-      let idx = 0, el = document.getElementById('role');
-      function rotateRole() {
-        el.style.opacity = 0;
-        setTimeout(() => {
-          el.textContent = roles[idx];
-          el.style.opacity = 1;
-          idx = (idx + 1) % roles.length;
-        }, 500);
-      }
-      rotateRole();
-      setInterval(rotateRole, 4000);
+      new Typed('.typed', {
+        strings: [
+          'a Data Scientist',
+          'an Evolutionary Ecologist',
+          'a Fast Learner'
+        ],
+        typeSpeed: 50,
+        backSpeed: 25,
+        backDelay: 2000,
+        loop: true
+      });
     });
   </script>
 </body>
