@@ -8,73 +8,88 @@
   <!-- Georgia font and basic styling -->
   <style>
     html, body {
-    margin: 0; padding: 0;
-    height: 100%;
-    font-family: Georgia, serif;
-    color: #fff;
-    background: #3e2f5b;
-    overflow: hidden;
+      margin: 0; padding: 0;
+      height: 100%;
+      font-family: Georgia, serif;
+      color: #fff;
+      background: #3e2f5b;
+      overflow: hidden;
     }
-    body {
-      position: relative;
+
+    #particles {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
     }
+
     .content {
       position: relative;
       max-width: 600px;
       margin: 100px auto;
       padding: 0 20px;
-      z-index: 10;
-      background: rgba(255, 255, 255, 0.85);
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 6px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      backdrop-filter: blur(4px);
+      color: #fff;
     }
+
     h1 {
       font-size: 2em;
       margin-bottom: 0.3em;
     }
+
     a {
-      color: #0057ff;
+      color: #c0c0c0;
       text-decoration: none;
     }
+
     a:hover {
       text-decoration: underline;
     }
+
     .icons {
       margin-top: 1em;
       font-size: 1.5em;
     }
+
     .icons a {
       margin-right: 15px;
-      color: #444;
+      color: #ccc;
     }
+
     .icons a:hover {
-      color: #0057ff;
+      color: #fff;
     }
   </style>
 
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-  
+
+  <!-- Background animation layer -->
+  <div id="particles"></div>
+
+  <!-- Main content -->
   <div class="content">
-      <h1>Béranger Waterschoot</h1>
-      <p>Welcome to my personal website.</p>
-      <p>
-      <a href="mailto:your@email.com">Email</a>
-      </p>
+    <h1>Béranger Waterschoot</h1>
+    <p>Welcome to my personal website.</p>
+    <p><a href="mailto:your@email.com">Email</a></p>
     <div class="icons">
       <a href="https://github.com/WttBe" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
       <a href="https://www.linkedin.com/in/b%C3%A9ranger-waterschoot-46705368" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
     </div>
   </div>
-  
-  <!-- JQuery and Particleground JS -->
+
+  <!-- jQuery and Particleground -->
   <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script src="background/jquery.particleground.min.js"></script>
-  
   <script>
     $(document).ready(function() {
-      $('body').particleground({
+      $('#particles').particleground({
         dotColor: '#c0c0c0',
         lineColor: '#c0c0c0'
       });
