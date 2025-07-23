@@ -1,45 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Darius Lam</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Béranger Waterschoot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    html {
+    html, body {
+      margin: 0;
+      padding: 0;
       font-family: Georgia, serif;
-      font-size: 18px;
-      color: #111;
       background: #fff;
+      color: #111;
+      height: 100%;
+      overflow: hidden;
     }
-    body {
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .content {
+      position: relative;
       max-width: 600px;
       margin: 80px auto;
       padding: 0 20px;
       line-height: 1.6;
     }
+
     h1 {
       font-size: 1.5em;
       margin-bottom: 0.5em;
     }
-    p {
-      margin-bottom: 1em;
-    }
+
     a {
       color: #00f;
       text-decoration: none;
     }
+
     a:hover {
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <h1>Béranger Waterschoot</h1>
-  <p>Welcome to my personal website.</p>
-  <p>
-    <a href="mailto:your@email.com">Email</a> | 
-    <a href="https://github.com/WttBe">GitHub</a> | 
-    <a href="https://www.linkedin.com/in/béranger-waterschoot">LinkedIn</a>
-  </p>
+  <canvas id="bg"></canvas>
+  <div class="content">
+      <h1>Béranger Waterschoot</h1>
+      <p>Welcome to my personal website.</p>
+      <p>
+      <a href="mailto:your@email.com">Email</a> | 
+      <a href="https://github.com/WttBe">GitHub</a> | 
+      <a href="https://www.linkedin.com/in/b%C3%A9ranger-waterschoot-46705368">LinkedIn</a>
+      </p>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+
+    let width, height, points;
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      points = [];
+
+      for (let i = 0; i < 100; i++) {
+        points.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = "#999";
+        ctx.fill();
+      }
+
+      for (let i = 0; i < points.length; i++) {
+        for (let j = i + 1; j < points.length; j++) {
+          const p1 = points[i];
+          const p2 = points[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const dist = dx * dx + dy * dy;
+          if (dist < 5000) {
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(150, 150, 150, ${1 - dist / 5000})`;
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    draw();
+  </script>
 </body>
 </html>
