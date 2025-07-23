@@ -1,188 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Béranger Waterschoot</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Styles -->
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      height: 100%;
-      font-family: Georgia, serif;
-      color: #fff;
-      background: #3e2f5b;
-      overflow-x: hidden;
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { height:100%; font-family:Georgia, serif; color:#fff; background:#3e2f5b; overflow:hidden; }
+    #particles { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; }
+
+    .sidebar {
+      position:fixed; left:0; top:0; bottom:0; width:200px;
+      background:rgba(0,0,0,0.4); backdrop-filter:blur(4px);
+      padding-top:50px; text-align:center; z-index:2;
     }
-    #particles {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
+    .sidebar a {
+      display:block; padding:20px 0;
+      color:#c0c0c0; font-size:1.1em;
+      text-decoration:none;
+      transition:color 0.2s;
     }
-    .header {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      padding: 10px 20px;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(3px);
+    .sidebar a:hover, .sidebar a.active { color:#fff; }
+
+    .main {
+      margin-left:200px; height:100%; overflow-y:auto;
+      padding:60px 40px;
+      z-index:1; position:relative;
     }
-    .header .name {
-      font-size: 1.2em;
-      font-weight: bold;
-    }
-    .header .nav {
-      margin-left: auto;
-    }
-    .header .nav a {
-      color: #c0c0c0;
-      margin-left: 15px;
-      text-decoration: none;
-    }
-    .header .nav a:hover {
-      color: #fff;
-    }
-    .construction {
-      position: fixed;
-      top: 40px;
-      left: 20px;
-      z-index: 2;
-      font-size: 0.9em;
-      color: #ccc;
-    }
-    section {
-      position: relative;
-      padding: 100px 20px;
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto;
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 6px;
-      margin-top: 80px;
-      backdrop-filter: blur(3px);
-      z-index: 1;
-    }
-    section + section {
-      margin-top: 50px;
-    }
-    .typed {
-      color: #c0c0c0;
-    }
-    .icons {
-      font-size: 1.5em;
-      margin-top: 10px;
-    }
-    .icons a {
-      margin-right: 15px;
-      color: #ccc;
-    }
-    .icons a:hover {
-      color: #fff;
-    }
+    section { margin-bottom:80px; }
+    section h2 { font-size:2em; margin-bottom:0.5em; border-bottom:2px solid #ccc; padding-bottom:0.2em; }
+
+    .intro { font-size:1.3em; margin-bottom:20px; color:#c0c0c0; }
+    .typed { color:#fff; font-style:italic; }
+
+    .icons a { margin-right:15px; color:#ccc; font-size:1.4em; }
+    .icons a:hover { color:#fff; }
   </style>
 
-  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
 
-  <!-- Background animation -->
   <div id="particles"></div>
 
-  <!-- Header with navigation -->
-  <div class="header">
-    <div class="name">Béranger Waterschoot</div>
-    <nav class="nav">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#education">Education</a>
-      <a href="#contact">Contact</a>
-      <a href="#resume">Resume</a>
-    </nav>
+  <div class="sidebar">
+    <a href="#about" class="active">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+    <a href="#resume">Resume</a>
   </div>
 
-  <!-- Construction notice -->
-  <div class="construction">🚧 Website under construction</div>
+  <div class="main">
+    <section id="about">
+      <h2>About</h2>
+      <p class="intro">I am <span class="typed"></span></p>
+      <p>Welcome to my personal website under construction.</p>
+    </section>
 
-  <!-- Sections -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I am <span class="typed"></span></p>
-  </section>
+    <section id="experience">
+      <h2>Experience</h2>
+      <p>Details about work history...</p>
+    </section>
 
-  <section id="experience">
-    <h2>Experience</h2>
-    <p>Details about my work history...</p>
-  </section>
+    <section id="projects">
+      <h2>Projects</h2>
+      <p>Descriptions of portfolio projects...</p>
+    </section>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <p>Descriptions of my portfolio projects...</p>
-  </section>
+    <section id="skills">
+      <h2>Skills</h2>
+      <p>List of languages, frameworks, tools...</p>
+    </section>
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <p>List of languages, frameworks, tools...</p>
-  </section>
+    <section id="education">
+      <h2>Education</h2>
+      <p>Academic background details...</p>
+    </section>
 
-  <section id="education">
-    <h2>Education</h2>
-    <p>Details of my academic background...</p>
-  </section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
+      <div class="icons">
+        <a href="https://github.com/WttBe" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/béranger-waterschoot-46705368" target="_blank"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
-    <div class="icons">
-      <a href="https://github.com/WttBe" target="_blank" aria-label="GitHub">
-        <i class="fab fa-github"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/béranger-waterschoot-46705368" target="_blank" aria-label="LinkedIn">
-        <i class="fab fa-linkedin"></i>
-      </a>
-    </div>
-  </section>
-
-  <section id="resume">
-    <h2>Resume</h2>
-    <p><a href="assets/resume.pdf" target="_blank">Download my resume (PDF)</a></p>
-  </section>
+    <section id="resume">
+      <h2>Resume</h2>
+      <p><a href="assets/resume.pdf" target="_blank">Download my resume (PDF)</a></p>
+    </section>
+  </div>
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script src="background/jquery.particleground.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-
   <script>
-    $(function () {
+    $(function(){
       $('#particles').particleground({
-        dotColor: '#c0c0c0',
-        lineColor: '#c0c0c0',
-        minSpeedX: 0.03,
-        maxSpeedX: 0.1,
-        minSpeedY: 0.03,
-        maxSpeedY: 0.1,
-        density: 15000
+        dotColor:'#c0c0c0', lineColor:'#c0c0c0',
+        minSpeedX:0.03, maxSpeedX:0.1,
+        minSpeedY:0.03, maxSpeedY:0.1,
+        density:15000
+      });
+      new Typed('.typed',{
+        strings:['a Data Scientist','an Evolutionary Ecologist','a Fast Learner'],
+        typeSpeed:50, backSpeed:25, backDelay:2000, loop:true
       });
 
-      new Typed('.typed', {
-        strings: [
-          'a Data Scientist',
-          'an Evolutionary Ecologist',
-          'a Fast Learner'
-        ],
-        typeSpeed: 50,
-        backSpeed: 25,
-        backDelay: 2000,
-        loop: true
-      });
+      const links = document.querySelectorAll('.sidebar a');
+      const sections = Array.from(links).map(l=>document.querySelector(l.getAttribute('href')));
+      const handler = () => {
+        const scrollPos = window.scrollY + window.innerHeight/3;
+        links.forEach((link,i)=>{
+          if(scrollPos >= sections[i].offsetTop){
+            links.forEach(l=>l.classList.remove('active'));
+            link.classList.add('active');
+          }
+        });
+      };
+      document.addEventListener('scroll', handler);
     });
   </script>
 </body>
