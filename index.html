@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Béranger Waterschoot</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Font and Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Georgia&display=swap" rel="stylesheet" />
 
   <!-- Styles -->
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      height: 100%;
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body {
       font-family: Georgia, serif;
+      background-color: #3e2f5b;
       color: #fff;
-      background: #3e2f5b;
-      overflow: hidden;
     }
+
     #particles {
       position: fixed;
       top: 0; left: 0;
@@ -22,66 +25,59 @@
       z-index: 0;
     }
 
-    .sidebar {
-      position: fixed;
-      left: 0; top: 0; bottom: 0;
-      width: 220px;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(4px);
-      padding-top: 30px;
-      text-align: center;
-      z-index: 2;
+    header {
+      background-color: rgba(62, 47, 91, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 10;
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
+      padding: 15px 30px;
+      border-bottom: 1px solid #5a4a78;
     }
-    .sidebar .name {
-      font-size: 1.5em;
+
+    .logo {
+      font-size: 1.4rem;
       font-weight: bold;
-      color: #fff;
-      margin-bottom: 20px;
-      padding: 0 10px;
     }
-    .sidebar a {
-      display: block;
-      padding: 15px 0;
-      color: #c0c0c0;
-      font-size: 1.1em;
+
+    nav a {
+      margin: 0 12px;
+      color: #ccc;
       text-decoration: none;
-      width: 100%;
-    }
-    .sidebar a:hover, .sidebar a.active {
-      color: #fff;
-      background-color: rgba(255,255,255,0.05);
+      font-size: 1rem;
     }
 
-    .main {
-      margin-left: 220px;
-      height: 100%;
-      overflow-y: auto;
-      padding: 60px 40px;
-      z-index: 1;
+    nav a:hover {
+      color: #fff;
+    }
+
+    .section {
+      padding: 100px 20px;
+      max-width: 1000px;
+      margin: auto;
       position: relative;
-    }
-    section {
-      margin-bottom: 80px;
-    }
-    section h2 {
-      font-size: 2em;
-      margin-bottom: 0.5em;
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 0.2em;
+      z-index: 1;
     }
 
-    .intro {
-      font-size: 1.3em;
+    .hero {
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
       margin-bottom: 10px;
-      color: #c0c0c0;
     }
+
     .typed {
-      color: #fff;
       font-style: italic;
+      font-size: 1.2rem;
+      color: #ddd;
+      min-height: 1.5em;
     }
+
     .construction {
       margin-top: 10px;
       color: #f8d13b;
@@ -89,125 +85,146 @@
       font-size: 0.95em;
     }
 
-    .icons a {
-      margin-right: 15px;
-      color: #ccc;
-      font-size: 1.4em;
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
     }
+
+    p {
+      line-height: 1.6;
+      color: #ddd;
+    }
+
+    .icons {
+      margin-top: 15px;
+    }
+
+    .icons a {
+      color: #ccc;
+      font-size: 1.5rem;
+      margin: 0 10px;
+    }
+
     .icons a:hover {
       color: #fff;
     }
 
-    a[href^="mailto"] {
-      color: #aad;
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        margin-top: 10px;
+      }
     }
   </style>
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
 
+  <!-- Particle Background -->
   <div id="particles"></div>
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div class="name">Béranger Waterschoot</div>
-    <a href="#about" class="active">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#education">Education</a>
-    <a href="#contact">Contact</a>
-    <a href="#resume">Resume</a>
-  </div>
+  <!-- Header -->
+  <header>
+    <div class="logo">Béranger Waterschoot</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+      <a href="#resume">Resume</a>
+    </nav>
+  </header>
 
-  <!-- Main content -->
-  <div class="main">
-    <section id="about">
-      <h2>About</h2>
-      <p class="intro">I am <span class="typed"></span></p>
-      <p class="construction">🚧 This website is under construction.</p>
-      <p>Welcome! I'm glad you're here.</p>
-    </section>
+  <!-- Hero Section -->
+  <section class="section hero" id="home">
+    <h1>Béranger Waterschoot</h1>
+    <div class="typed"></div>
+    <div class="construction">🚧 This website is under construction.</div>
+    <div class="icons">
+      <a href="mailto:your@email.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/WttBe" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/béranger-waterschoot-46705368" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </section>
 
-    <section id="experience">
-      <h2>Experience</h2>
-      <p>Details about my work history...</p>
-    </section>
+  <!-- About Section -->
+  <section class="section" id="about">
+    <h2>About</h2>
+    <p>Welcome to my personal site. I'm a researcher with interests in data science, evolutionary ecology, and impactful projects.</p>
+  </section>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <p>Descriptions of portfolio projects...</p>
-    </section>
+  <!-- Experience Section -->
+  <section class="section" id="experience">
+    <h2>Experience</h2>
+    <p>Details about past and current work experience go here.</p>
+  </section>
 
-    <section id="skills">
-      <h2>Skills</h2>
-      <p>Languages, frameworks, tools, etc...</p>
-    </section>
+  <!-- Projects Section -->
+  <section class="section" id="projects">
+    <h2>Projects</h2>
+    <p>Descriptions of personal, academic, or professional projects.</p>
+  </section>
 
-    <section id="education">
-      <h2>Education</h2>
-      <p>Details of my academic background...</p>
-    </section>
+  <!-- Skills Section -->
+  <section class="section" id="skills">
+    <h2>Skills</h2>
+    <p>Tools, technologies, methods, and areas of expertise.</p>
+  </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
-      <div class="icons">
-        <a href="https://github.com/WttBe" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/béranger-waterschoot-46705368" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-      </div>
-    </section>
+  <!-- Education Section -->
+  <section class="section" id="education">
+    <h2>Education</h2>
+    <p>Academic background and degrees obtained.</p>
+  </section>
 
-    <section id="resume">
-      <h2>Resume</h2>
-      <p><a href="assets/resume.pdf" target="_blank">Download my resume (PDF)</a></p>
-    </section>
-  </div>
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <h2>Contact</h2>
+    <p>Email me at <a href="mailto:your@email.com">your@email.com</a>.</p>
+  </section>
+
+  <!-- Resume Section -->
+  <section class="section" id="resume">
+    <h2>Resume</h2>
+    <p><a href="assets/resume.pdf" target="_blank" style="color: #aad;">Download my resume (PDF)</a></p>
+  </section>
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script src="background/jquery.particleground.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-
+  
   <script>
-    $(function () {
+    $(document).ready(function () {
       $('#particles').particleground({
         dotColor: '#c0c0c0',
         lineColor: '#c0c0c0',
         minSpeedX: 0.03,
-        maxSpeedX: 0.1,
+        maxSpeedX: 0.07,
         minSpeedY: 0.03,
-        maxSpeedY: 0.1,
-        density: 15000
-      });
-
-      new Typed('.typed', {
-        strings: [
-          'a Software Developer',
-          'a Tech Enthusiast',
-          'a Creative Problem Solver'
-        ],
-        typeSpeed: 50,
-        backSpeed: 25,
-        backDelay: 2000,
-        loop: true
-      });
-
-      // Highlight active sidebar link
-      const links = document.querySelectorAll('.sidebar a');
-      const sections = Array.from(links).map(link => document.querySelector(link.getAttribute('href')));
-      document.addEventListener('scroll', () => {
-        const scrollPos = window.scrollY + window.innerHeight / 3;
-        links.forEach((link, i) => {
-          if (scrollPos >= sections[i].offsetTop) {
-            links.forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-          }
-        });
+        maxSpeedY: 0.07,
+        density: 10000
       });
     });
+  
+    new Typed(".typed", {
+      strings: [
+        "a Data Scientist",
+        "an Evolutionary Ecologist",
+        "a Fast Learner"
+      ],
+      typeSpeed: 50,
+      backSpeed: 25,
+      backDelay: 2000,
+      loop: true
+    });
   </script>
+
 </body>
 </html>
