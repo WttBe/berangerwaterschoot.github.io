@@ -26,7 +26,8 @@
       font-family: 'Poppins', sans-serif;
       color: #fff;
       background: #3e2f5b;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
     #particles {
       position: fixed;
@@ -37,19 +38,50 @@
       z-index: 0;
     }
 
-    /* Content window with lighter opacity */
-    .content-window {
-      background: rgba(0, 0, 0, 0.2);
-      padding: 30px 40px;
-      border-radius: 12px;
+    /* Nav bar at top in detail view */
+    #top-nav {
+      display: none; /* hidden on landing */
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      background: rgba(0, 0, 0, 0.3);
       backdrop-filter: blur(6px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-      max-width: 700px;
-      margin: auto;
-      user-select: text;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      padding: 0 25px;
+      z-index: 10;
+      user-select: none;
+    }
+    #top-nav button {
+      background: transparent;
+      border: none;
+      color: #ddd;
+      font-weight: 600;
+      font-size: 1.1em;
+      margin-right: 24px;
+      cursor: pointer;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    #top-nav button:hover,
+    #top-nav button.active {
+      background: rgba(106, 87, 161, 0.75);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(106, 87, 161, 0.7);
     }
 
-    /* Landing page */
+    #top-nav #btn-name {
+      font-weight: 700;
+      font-size: 1.3em;
+      margin-right: 40px;
+      color: #f8d13b;
+    }
+
+    /* Landing Page */
     #landing {
       height: 100vh;
       display: flex;
@@ -58,6 +90,9 @@
       align-items: center;
       text-align: center;
       padding: 20px;
+      user-select: none;
+      z-index: 5;
+      position: relative;
     }
 
     #landing .name {
@@ -65,15 +100,32 @@
       font-weight: 700;
       margin-bottom: 10px;
       user-select: text;
+      color: #f8d13b;
     }
 
+    /* Fix Typed.js container height jump */
     #landing .typed {
       font-style: normal;
       font-size: 1.5em;
       margin-bottom: 15px;
       color: #ddd;
+      min-height: 36px; /* keep height consistent */
+      display: inline-block;
       user-select: text;
-      min-height: 36px; /* prevent page shift */
+      position: relative;
+    }
+    /* Make typed cursor move with text */
+    .typed-cursor {
+      display: inline-block !important;
+      animation: blink 1s infinite;
+      font-weight: 700;
+      font-size: 1.5em;
+      vertical-align: bottom;
+      margin-left: 2px;
+    }
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
     }
 
     #landing .construction {
@@ -91,6 +143,7 @@
       flex-wrap: wrap;
       justify-content: center;
       max-width: 900px;
+      user-select: none;
     }
     .placeholder {
       background: rgba(255, 255, 255, 0.12);
@@ -101,10 +154,10 @@
       font-size: 1.15em;
       font-weight: 600;
       transition: background-color 0.3s ease, color 0.3s ease;
-      user-select: none;
       min-width: 140px;
       text-align: center;
       box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      user-select: none;
     }
     .placeholder:hover {
       background: #6a57a1;
@@ -112,149 +165,85 @@
       box-shadow: 0 4px 12px rgba(106, 87, 161, 0.8);
     }
 
-    /* Detail page wrapper for content + sidebar */
+    /* Detail Page Content Window */
     #detail-page {
-      height: 100vh;
-      display: flex;
-      background: transparent;
-      overflow: hidden;
-      color: #eee;
+      padding: 90px 0 40px 0; /* leave room for fixed top nav */
+      min-height: 100vh;
       display: none;
+      justify-content: center;
+      align-items: flex-start;
+      z-index: 5;
+      position: relative;
     }
-
-    /* Sidebar nav on left */
-    #sidebar {
-      width: 180px;
+    #content-window {
       background: rgba(0, 0, 0, 0.2);
+      padding: 30px 40px;
+      border-radius: 12px;
       backdrop-filter: blur(6px);
-      padding-top: 60px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      box-shadow: inset -3px 0 8px rgba(0,0,0,0.3);
-    }
-    #sidebar button {
-      background: transparent;
-      border: none;
-      color: #ccc;
-      font-size: 1.1em;
-      font-weight: 600;
-      padding: 12px 25px;
-      text-align: left;
-      cursor: pointer;
-      border-radius: 0 10px 10px 0;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      user-select: none;
-    }
-    #sidebar button:hover,
-    #sidebar button.active {
-      background-color: rgba(106, 87, 161, 0.7);
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(106, 87, 161, 0.7);
-    }
-
-    /* Content area to right of sidebar */
-    #content-area {
-      flex: 1;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      max-width: 90vw;
+      max-height: 80vh;
       overflow-y: auto;
-      padding: 60px 50px;
-      scroll-behavior: smooth;
-    }
-
-    #content-area .name-header {
-      font-size: 2.6em;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 15px;
+      color: #eee;
       user-select: text;
     }
-    #content-area .construction {
-      font-weight: 700;
-      font-size: 1em;
-      margin: 0 auto 30px;
-      color: #f8d13b;
-      text-align: center;
-      user-select: none;
-      max-width: 700px;
-    }
-    #content-area .content-window {
-      margin-bottom: 100px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    #content-area .content-window h2 {
-      font-size: 2.2em;
+
+    #content-window h2 {
+      font-size: 2.4em;
       border-bottom: 2px solid #ccc;
       padding-bottom: 0.3em;
       margin-bottom: 20px;
       user-select: text;
     }
-    #content-area .content-window p {
+    #content-window p {
       line-height: 1.6;
       font-size: 1.15em;
       color: #ddd;
       user-select: text;
     }
 
-    #content-area .icons {
+    #content-window a {
+      color: #aad;
+      user-select: text;
+      text-decoration: underline;
+    }
+    #content-window a:hover {
+      color: #f8d13b;
+    }
+
+    /* Contact icons */
+    #content-window .icons {
       text-align: center;
       margin-top: 25px;
     }
-    #content-area .icons a {
+    #content-window .icons a {
       margin: 0 20px;
       color: #ccc;
       font-size: 1.9em;
       transition: color 0.3s;
     }
-    #content-area .icons a:hover {
-      color: #fff;
+    #content-window .icons a:hover {
+      color: #f8d13b;
     }
 
-    a[href^="mailto"] {
-      color: #aad;
-      user-select: text;
-    }
-
-    /* Scrollbar for content-area */
-    #content-area::-webkit-scrollbar {
+    /* Scrollbar for content window */
+    #content-window::-webkit-scrollbar {
       width: 10px;
     }
-    #content-area::-webkit-scrollbar-thumb {
+    #content-window::-webkit-scrollbar-thumb {
       background: #6a57a1;
       border-radius: 10px;
     }
-    #content-area::-webkit-scrollbar-track {
+    #content-window::-webkit-scrollbar-track {
       background: transparent;
     }
-
-    /* Home button at bottom of sidebar */
-    #home-button {
-      margin-top: auto;
-      margin-bottom: 30px;
-      padding-left: 25px;
-      color: #f8d13b;
-      font-weight: 700;
-      font-size: 1.15em;
-      cursor: pointer;
-      user-select: none;
-      background: transparent;
-      border: none;
-      text-align: left;
-      border-radius: 0 10px 10px 0;
-      transition: background-color 0.3s ease;
-    }
-    #home-button:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-
   </style>
 </head>
 <body>
   <div id="particles"></div>
 
   <!-- Landing Page -->
-  <div id="landing" class="content-window">
+  <div id="landing">
     <div class="name">Béranger Waterschoot</div>
     <div class="typed"></div>
     <div class="construction">🚧 This website is under construction.</div>
@@ -271,25 +260,22 @@
   </div>
 
   <!-- Detail Page -->
-  <div id="detail-page">
-    <nav id="sidebar">
-      <button data-section="about" class="active">About</button>
-      <button data-section="experience">Experience</button>
-      <button data-section="projects">Projects</button>
-      <button data-section="skills">Skills</button>
-      <button data-section="education">Education</button>
-      <button data-section="contact">Contact</button>
-      <button data-section="resume">Resume</button>
-      <button id="home-button">← Home</button>
-    </nav>
-    <main id="content-area" class="content-window">
-      <div class="name-header">Béranger Waterschoot</div>
-      <div class="construction">🚧 This website is under construction.</div>
-      <div id="section-content">
-        <!-- Section content injected here -->
-      </div>
-    </main>
-  </div>
+  <nav id="top-nav" aria-label="Primary navigation">
+    <button id="btn-name">Béranger Waterschoot</button>
+    <button data-section="about" class="active">About</button>
+    <button data-section="experience">Experience</button>
+    <button data-section="projects">Projects</button>
+    <button data-section="skills">Skills</button>
+    <button data-section="education">Education</button>
+    <button data-section="contact">Contact</button>
+    <button data-section="resume">Resume</button>
+  </nav>
+
+  <main id="detail-page">
+    <section id="content-window" role="main" tabindex="0" aria-live="polite">
+      <!-- Content dynamically injected here -->
+    </section>
+  </main>
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -320,9 +306,10 @@
         backSpeed: 25,
         backDelay: 2000,
         loop: true,
+        showCursor: true,
+        cursorChar: '|',
       });
 
-      // Section content object
       const sectionDetails = {
         about: {
           title: "About",
@@ -362,62 +349,77 @@
             <div class="icons">
               <a href="https://github.com/WttBe" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
               <a href="https://www.linkedin.com/in/béranger-waterschoot-46705368" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a href="mailto:your@email.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
           `,
         },
         resume: {
           title: "Resume",
           html: `
-            <p><a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer">Download my resume (PDF)</a></p>
+            <p>You can download my <a href="resume.pdf" target="_blank" rel="noopener noreferrer">resume here</a>.</p>
           `,
         },
       };
 
       const $landing = $("#landing");
       const $detailPage = $("#detail-page");
-      const $sectionContent = $("#section-content");
-      const $sidebarButtons = $("#sidebar button[data-section]");
+      const $topNav = $("#top-nav");
+      const $contentWindow = $("#content-window");
       const $placeholders = $(".placeholder");
-      const $homeButton = $("#home-button");
+      const $navButtons = $("#top-nav button[data-section]");
+      const $btnName = $("#btn-name");
 
-      // Show detail section
+      // Function to show landing page
+      function showLanding() {
+        $landing.show();
+        $detailPage.hide();
+        $topNav.hide();
+        // Reset nav buttons active state
+        $navButtons.removeClass("active");
+      }
+
+      // Function to show detail page with selected section
       function showSection(section) {
         if (!sectionDetails[section]) return;
 
-        // Update active button on sidebar
-        $sidebarButtons.removeClass("active");
-        $sidebarButtons.filter(`[data-section="${section}"]`).addClass("active");
-
-        // Inject content
-        $sectionContent.html(
-          `<h2>${sectionDetails[section].title}</h2>` + sectionDetails[section].html
-        );
-
-        // Show detail page, hide landing
+        // Hide landing, show detail page and nav
         $landing.hide();
         $detailPage.show();
+        $topNav.show();
 
-        // Scroll to top content area
-        $("#content-area").scrollTop(0);
+        // Update nav active button
+        $navButtons.removeClass("active");
+        $navButtons.filter(`[data-section="${section}"]`).addClass("active");
+
+        // Set content window title and html
+        $contentWindow.html(`
+          <h2>${sectionDetails[section].title}</h2>
+          ${sectionDetails[section].html}
+        `);
+
+        // Focus for accessibility
+        $contentWindow.focus();
       }
 
-      // Clicking placeholders on landing: open detail page with section
-      $placeholders.on("click", function () {
-        const section = $(this).data("section");
-        showSection(section);
+      // Click handlers for landing placeholders
+      $placeholders.click(function () {
+        const sec = $(this).attr("data-section");
+        showSection(sec);
       });
 
-      // Clicking sidebar buttons in detail page
-      $sidebarButtons.on("click", function () {
-        const section = $(this).data("section");
-        showSection(section);
+      // Click handlers for top nav buttons
+      $navButtons.click(function () {
+        const sec = $(this).attr("data-section");
+        showSection(sec);
       });
 
-      // Home button: go back to landing
-      $homeButton.on("click", function () {
-        $detailPage.hide();
-        $landing.show();
+      // Click on name button to go back home
+      $btnName.click(() => {
+        showLanding();
       });
+
+      // Initial state: show landing
+      showLanding();
     });
   </script>
 </body>
