@@ -3,228 +3,387 @@
 <head>
   <meta charset="UTF-8" />
   <title>Béranger Waterschoot</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Font and Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Georgia&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Styles -->
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-    body {
-      font-family: Georgia, serif;
-      background-color: #3e2f5b;
-      color: #fff;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-
+    html,
+    body {
+      height: 100%;
+      font-family: Georgia, serif;
+      color: #fff;
+      background: #3e2f5b;
+      overflow: hidden;
+    }
     #particles {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       z-index: 0;
     }
 
-    header {
-      background-color: rgba(62, 47, 91, 0.95);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      border-bottom: 1px solid #5a4a78;
+    body,
+    a {
+      user-select: none;
     }
 
-    .logo {
-      font-size: 1.4rem;
-      font-weight: bold;
-    }
-
-    nav a {
-      margin: 0 12px;
-      color: #ccc;
-      text-decoration: none;
-      font-size: 1rem;
-    }
-
-    nav a:hover {
-      color: #fff;
-    }
-
-    .section {
-      padding: 100px 20px;
-      max-width: 1000px;
+    /* Container for content window with backdrop blur */
+    .content-window {
+      background: rgba(0, 0, 0, 0.45);
+      padding: 30px 40px;
+      border-radius: 12px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      max-width: 700px;
       margin: auto;
-      position: relative;
-      z-index: 1;
+      user-select: text;
     }
 
-    .hero {
+    /* Landing page style */
+    #landing {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      padding-top: 100px;
+      padding: 20px;
     }
 
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    .typed {
-      font-style: italic;
-      font-size: 1.2rem;
-      color: #ddd;
-      min-height: 1.5em;
-    }
-
-    .construction {
-      margin-top: 10px;
-      color: #f8d13b;
+    #landing .name {
+      font-size: 3.4em;
       font-weight: bold;
-      font-size: 0.95em;
+      margin-bottom: 8px;
+      user-select: text;
     }
 
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 5px;
-    }
-
-    p {
-      line-height: 1.6;
+    #landing .typed {
+      font-style: italic;
+      font-size: 1.5em;
+      margin-bottom: 12px;
       color: #ddd;
+      user-select: text;
     }
 
-    .icons {
-      margin-top: 15px;
+    #landing .construction {
+      font-weight: bold;
+      font-size: 1em;
+      margin-bottom: 30px;
+      color: #f8d13b;
+      user-select: none;
     }
 
-    .icons a {
+    /* Placeholders container on landing */
+    #landing .placeholders {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 900px;
+    }
+    .placeholder {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 16px 28px;
+      border-radius: 8px;
+      color: #ddd;
+      cursor: pointer;
+      font-size: 1.1em;
+      font-weight: 600;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+      min-width: 140px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+    .placeholder:hover {
+      background: #6a57a1;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(106, 87, 161, 0.8);
+    }
+
+    /* Detail page style */
+    #detail-page {
+      height: 100vh;
+      overflow-y: auto;
+      padding: 60px 40px;
+      display: none;
+      flex-direction: column;
+      color: #eee;
+    }
+
+    #detail-page .topbar {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    #detail-page .topbar button {
+      background: transparent;
+      border: none;
+      font-size: 1.2em;
+      color: #c0c0c0;
+      cursor: pointer;
+      padding: 10px 20px;
+      border-radius: 10px;
+      transition: background-color 0.3s, color 0.3s;
+      font-family: Georgia, serif;
+      user-select: none;
+    }
+    #detail-page .topbar button:hover,
+    #detail-page .topbar button.active {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(106, 87, 161, 0.7);
+    }
+
+    #detail-page .name-header {
+      font-size: 2.4em;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px;
+      user-select: text;
+    }
+
+    #detail-page .construction {
+      font-weight: bold;
+      font-size: 1em;
+      margin: 0 auto 25px;
+      color: #f8d13b;
+      text-align: center;
+      user-select: none;
+      max-width: 700px;
+    }
+
+    #detail-page .content-window {
+      margin-bottom: 100px;
+    }
+
+    #detail-page .content-window h2 {
+      font-size: 2em;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 0.2em;
+      margin-bottom: 15px;
+    }
+    #detail-page .content-window p {
+      line-height: 1.5;
+      font-size: 1.1em;
+      color: #ddd;
+      user-select: text;
+    }
+
+    #detail-page .icons {
+      text-align: center;
+      margin-top: 20px;
+    }
+    #detail-page .icons a {
+      margin: 0 15px;
       color: #ccc;
-      font-size: 1.5rem;
-      margin: 0 10px;
+      font-size: 1.8em;
+      transition: color 0.3s;
     }
-
-    .icons a:hover {
+    #detail-page .icons a:hover {
       color: #fff;
     }
 
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav {
-        margin-top: 10px;
-      }
+    a[href^="mailto"] {
+      color: #aad;
+      user-select: text;
+    }
+
+    /* Scrollbar for detail page */
+    #detail-page::-webkit-scrollbar {
+      width: 10px;
+    }
+    #detail-page::-webkit-scrollbar-thumb {
+      background: #6a57a1;
+      border-radius: 10px;
+    }
+    #detail-page::-webkit-scrollbar-track {
+      background: transparent;
     }
   </style>
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
 </head>
 <body>
-
-  <!-- Particle Background -->
   <div id="particles"></div>
 
-  <!-- Header -->
-  <header>
-    <div class="logo">Béranger Waterschoot</div>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#education">Education</a>
-      <a href="#contact">Contact</a>
-      <a href="#resume">Resume</a>
-    </nav>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="section hero" id="home">
-    <h1>Béranger Waterschoot</h1>
+  <!-- Landing Page -->
+  <div id="landing" class="content-window">
+    <div class="name">Béranger Waterschoot</div>
     <div class="typed"></div>
     <div class="construction">🚧 This website is under construction.</div>
-    <div class="icons">
-      <a href="mailto:your@email.com"><i class="fas fa-envelope"></i></a>
-      <a href="https://github.com/WttBe" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/béranger-waterschoot-46705368" target="_blank"><i class="fab fa-linkedin"></i></a>
+
+    <div class="placeholders">
+      <div class="placeholder" data-section="about">About</div>
+      <div class="placeholder" data-section="experience">Experience</div>
+      <div class="placeholder" data-section="projects">Projects</div>
+      <div class="placeholder" data-section="skills">Skills</div>
+      <div class="placeholder" data-section="education">Education</div>
+      <div class="placeholder" data-section="contact">Contact</div>
+      <div class="placeholder" data-section="resume">Resume</div>
     </div>
-  </section>
+  </div>
 
-  <!-- About Section -->
-  <section class="section" id="about">
-    <h2>About</h2>
-    <p>Welcome to my personal site. I'm a researcher with interests in data science, evolutionary ecology, and impactful projects.</p>
-  </section>
+  <!-- Detail Page -->
+  <div id="detail-page">
+    <div class="name-header">Béranger Waterschoot</div>
+    <div class="topbar">
+      <button data-section="about" class="active">About</button>
+      <button data-section="experience">Experience</button>
+      <button data-section="projects">Projects</button>
+      <button data-section="skills">Skills</button>
+      <button data-section="education">Education</button>
+      <button data-section="contact">Contact</button>
+      <button data-section="resume">Resume</button>
+      <button id="back-home" style="margin-left: 40px; color: #f8d13b; font-weight: 700;">← Home</button>
+    </div>
 
-  <!-- Experience Section -->
-  <section class="section" id="experience">
-    <h2>Experience</h2>
-    <p>Details about past and current work experience go here.</p>
-  </section>
-
-  <!-- Projects Section -->
-  <section class="section" id="projects">
-    <h2>Projects</h2>
-    <p>Descriptions of personal, academic, or professional projects.</p>
-  </section>
-
-  <!-- Skills Section -->
-  <section class="section" id="skills">
-    <h2>Skills</h2>
-    <p>Tools, technologies, methods, and areas of expertise.</p>
-  </section>
-
-  <!-- Education Section -->
-  <section class="section" id="education">
-    <h2>Education</h2>
-    <p>Academic background and degrees obtained.</p>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="section" id="contact">
-    <h2>Contact</h2>
-    <p>Email me at <a href="mailto:your@email.com">your@email.com</a>.</p>
-  </section>
-
-  <!-- Resume Section -->
-  <section class="section" id="resume">
-    <h2>Resume</h2>
-    <p><a href="assets/resume.pdf" target="_blank" style="color: #aad;">Download my resume (PDF)</a></p>
-  </section>
+    <div id="section-content" class="content-window">
+      <!-- Content will be injected here -->
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script src="background/jquery.particleground.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  
+
   <script>
-    $(document).ready(function () {
-      $('#particles').particleground({
-        dotColor: '#c0c0c0',
-        lineColor: '#c0c0c0',
-        minSpeedX: 0.03,
+    $(function () {
+      // Initialize particle background with slower speed for smoother effect
+      $("#particles").particleground({
+        dotColor: "#c0c0c0",
+        lineColor: "#c0c0c0",
+        minSpeedX: 0.02,
         maxSpeedX: 0.07,
-        minSpeedY: 0.03,
+        minSpeedY: 0.02,
         maxSpeedY: 0.07,
-        density: 10000
+        density: 15000,
+      });
+
+      // Typed.js roles
+      new Typed(".typed", {
+        strings: [
+          "a Data Scientist",
+          "an Evolutionary Ecologist",
+          "a Fast Learner",
+        ],
+        typeSpeed: 50,
+        backSpeed: 25,
+        backDelay: 2000,
+        loop: true,
+      });
+
+      // Content for each section
+      const sectionDetails = {
+        about: {
+          title: "About",
+          html: `
+            <p>Hello! I'm Béranger Waterschoot, a passionate researcher and data enthusiast. Welcome to my personal website.</p>
+            <p>This site is a work in progress, but feel free to explore!</p>
+          `,
+        },
+        experience: {
+          title: "Experience",
+          html: `
+            <p>Details about my work history, including projects and roles.</p>
+          `,
+        },
+        projects: {
+          title: "Projects",
+          html: `
+            <p>Descriptions of portfolio projects that I have worked on.</p>
+          `,
+        },
+        skills: {
+          title: "Skills",
+          html: `
+            <p>Languages, frameworks, tools, and other professional skills.</p>
+          `,
+        },
+        education: {
+          title: "Education",
+          html: `
+            <p>Information about my academic background and achievements.</p>
+          `,
+        },
+        contact: {
+          title: "Contact",
+          html: `
+            <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
+            <div class="icons">
+              <a href="https://github.com/WttBe" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+              <a href="https://www.linkedin.com/in/béranger-waterschoot-46705368" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+          `,
+        },
+        resume: {
+          title: "Resume",
+          html: `
+            <p><a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer">Download my resume (PDF)</a></p>
+          `,
+        },
+      };
+
+      // Cache elements
+      const $landing = $("#landing");
+      const $detailPage = $("#detail-page");
+      const $sectionContent = $("#section-content");
+      const $topbarButtons = $detailPage.find(".topbar button[data-section]");
+      const $placeholders = $(".placeholder");
+
+      // Function to show detail section
+      function showSection(section) {
+        if (!sectionDetails[section]) return;
+
+        // Update topbar buttons active state
+        $topbarButtons.removeClass("active");
+        $topbarButtons.filter(`[data-section="${section}"]`).addClass("active");
+
+        // Inject content
+        $sectionContent.html(
+          `<h2>${sectionDetails[section].title}</h2>` + sectionDetails[section].html
+        );
+
+        // Show detail page, hide landing
+        $landing.hide();
+        $detailPage.show();
+        // Scroll top
+        $detailPage.scrollTop(0);
+      }
+
+      // Click on placeholder: open detail page for that section
+      $placeholders.on("click", function () {
+        const section = $(this).data("section");
+        showSection(section);
+      });
+
+      // Click on topbar buttons: switch detail sections
+      $topbarButtons.on("click", function () {
+        const section = $(this).data("section");
+        showSection(section);
+      });
+
+      // Back home button
+      $("#back-home").on("click", function () {
+        $detailPage.hide();
+        $landing.show();
       });
     });
-  
-    new Typed(".typed", {
-      strings: [
-        "a Data Scientist",
-        "an Evolutionary Ecologist",
-        "a Fast Learner"
-      ],
-      typeSpeed: 50,
-      backSpeed: 25,
-      backDelay: 2000,
-      loop: true
-    });
   </script>
-
 </body>
 </html>
