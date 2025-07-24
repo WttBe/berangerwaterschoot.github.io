@@ -22,7 +22,7 @@
       height: 100%;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #3e2f5b;
-      color: #fff;
+      color: #ddd;
       overflow: hidden;
     }
     #particles {
@@ -36,7 +36,7 @@
     a {
       cursor: pointer;
       text-decoration: none;
-      color: #c0c0c0;
+      color: #a0a0a0;
       transition: color 0.3s ease;
     }
     a:hover {
@@ -57,19 +57,21 @@
     /* Landing page */
     #landing {
       text-align: center;
-      max-width: 800px;
+      max-width: 780px;
     }
     #landing h1 {
-      font-weight: 800;
+      font-weight: 700;
       font-size: 3.5em;
-      margin-bottom: 15px;
+      margin-bottom: 18px;
+      color: #f5f3f1;
       user-select: none;
+      letter-spacing: 0.05em;
     }
     #landing .typed-container {
-      font-size: 1.75em;
-      font-style: italic;
-      color: #ccc;
-      margin-bottom: 30px;
+      font-size: 1.6em;
+      font-style: normal;
+      color: #b0b0b0;
+      margin-bottom: 35px;
       min-height: 40px; /* prevent height jump */
     }
     .typed-cursor {
@@ -77,8 +79,8 @@
       vertical-align: bottom;
       margin-left: 2px;
       animation: blink 1s infinite;
-      font-weight: 700;
-      font-size: 1.75em;
+      font-weight: 600;
+      font-size: 1.6em;
       color: #f8d13b;
     }
     @keyframes blink {
@@ -94,42 +96,41 @@
     }
     .role-highlight {
       color: #f8d13b;
-      font-weight: 700;
+      font-weight: 600;
     }
     .placeholders {
       display: flex;
-      gap: 35px;
+      gap: 28px;
       justify-content: center;
       flex-wrap: wrap;
     }
     .placeholder {
-      padding: 18px 28px;
-      font-weight: 600;
-      font-size: 1.3em;
-      border: 2px solid #f8d13b;
-      border-radius: 15px;
+      padding: 12px 22px;
+      font-weight: 500;
+      font-size: 1.15em;
+      border-radius: 12px;
       user-select: none;
-      transition: all 0.3s ease;
+      transition: color 0.3s ease, background-color 0.3s ease;
       cursor: pointer;
-      color: #f8d13b;
-      background-color: rgba(255 255 255 / 0.07);
-      min-width: 110px;
+      color: #ccc;
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+      min-width: 100px;
       text-align: center;
-      box-shadow: 0 0 10px rgba(248, 209, 59, 0.5);
     }
     .placeholder:hover {
-      background-color: rgba(248 209 59 / 0.25);
-      color: #fff;
-      box-shadow: 0 0 20px rgba(248, 209, 59, 0.9);
+      color: #f8d13b;
+      background-color: rgba(248, 209, 59, 0.1);
     }
     .landing-icons {
-      margin-top: 35px;
+      margin-top: 40px;
       display: flex;
       justify-content: center;
       gap: 30px;
     }
     .landing-icons a {
-      color: #ddd;
+      color: #bbb;
       font-size: 2.3em;
       transition: color 0.3s ease;
     }
@@ -139,33 +140,38 @@
 
     /* Content window for detail pages */
     #content-window {
-      background: rgba(255 255 255 / 0.15);
-      border-radius: 18px;
-      padding: 35px 40px;
+      background: rgba(255 255 255 / 0.12);
+      border-radius: 16px;
+      padding: 30px 40px;
       max-width: 900px;
       min-width: 320px;
-      color: #fff;
+      color: #eee;
       margin: 0 auto;
-      box-shadow: 0 0 30px rgba(248, 209, 59, 0.4);
+      box-shadow: 0 0 30px rgba(248, 209, 59, 0.25);
       user-select: text;
+      text-align: left;
+      line-height: 1.5;
+      font-size: 1.1em;
+      font-weight: 400;
     }
     #content-window h2 {
       font-weight: 700;
-      font-size: 2.5em;
-      margin-bottom: 18px;
+      font-size: 2.3em;
+      margin-bottom: 22px;
       color: #f8d13b;
-      text-align: center;
+      user-select: none;
+      letter-spacing: 0.05em;
     }
     #content-window p {
-      font-size: 1.15em;
-      line-height: 1.45;
-      margin-bottom: 22px;
-      color: #eee;
-      text-align: center;
+      margin-bottom: 20px;
+      color: #ddd;
     }
     #content-window a {
       color: #f8d13b;
       font-weight: 600;
+      text-decoration: none;
+    }
+    #content-window a:hover {
       text-decoration: underline;
     }
 
@@ -173,34 +179,36 @@
     #top-nav {
       display: flex;
       justify-content: center;
-      gap: 30px;
+      gap: 28px;
       margin-bottom: 40px;
       flex-wrap: nowrap;
       user-select: none;
     }
     #top-nav .nav-item {
-      font-weight: 700;
-      font-size: 1.15em;
-      color: #c0c0c0;
-      padding: 8px 14px;
-      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1.1em;
+      color: #aaa;
+      padding: 8px 18px;
+      border-radius: 10px;
       cursor: pointer;
       border: 2px solid transparent;
-      min-width: 90px;
+      min-width: 100px;
       text-align: center;
-      transition: all 0.25s ease;
-      background-color: rgba(255 255 255 / 0.07);
-      box-shadow: 0 0 6px rgba(255 255 255 / 0.1);
+      transition: all 0.3s ease;
+      background-color: transparent;
+      box-shadow: none;
+      user-select: none;
     }
     #top-nav .nav-item.active {
       color: #f8d13b;
       border-color: #f8d13b;
-      background-color: rgba(248 209 59 / 0.25);
-      box-shadow: 0 0 20px rgba(248, 209, 59, 0.9);
+      background-color: rgba(248 209 59 / 0.15);
+      box-shadow: 0 0 18px rgba(248, 209, 59, 0.7);
     }
     #top-nav .nav-item:hover:not(.active) {
       color: #fff;
-      background-color: rgba(255 255 255 / 0.15);
+      background-color: rgba(255 255 255 / 0.1);
+      box-shadow: 0 0 10px rgba(255 255 255 / 0.3);
     }
   </style>
 </head>
@@ -212,7 +220,7 @@
     <!-- Landing page -->
     <div id="landing" style="display: flex; flex-direction: column; align-items: center;">
       <h1>Béranger Waterschoot</h1>
-      <div class="typed-container">
+      <div class="typed-container" aria-live="polite" aria-atomic="true">
         I am <span class="typed"></span>
       </div>
 
@@ -258,21 +266,21 @@
     $(function () {
       // Initialize Particleground
       $('#particles').particleground({
-        dotColor: '#c0c0c0',
-        lineColor: '#c0c0c0',
+        dotColor: '#b0b0b0',
+        lineColor: '#b0b0b0',
         minSpeedX: 0.03,
         maxSpeedX: 0.1,
         minSpeedY: 0.03,
         maxSpeedY: 0.1,
-        density: 15000,
+        density: 16000,
       });
 
-      // Typed.js init with highlighted roles and blinking cursor fix
+      // Typed.js init with professional styling
       new Typed('.typed', {
         strings: [
-          "<span class='role-highlight'>a Data Scientist</span>",
-          "<span class='role-highlight'>an Evolutionary Ecologist</span>",
-          "<span class='role-highlight'>a Fast Learner</span>",
+          "<span class='role-highlight'>Data Scientist</span>",
+          "<span class='role-highlight'>Evolutionary Ecologist</span>",
+          "<span class='role-highlight'>Fast Learner</span>",
         ],
         typeSpeed: 50,
         backSpeed: 25,
@@ -335,15 +343,14 @@
         // Set active nav
         $('#top-nav .nav-item').removeClass('active');
         if (sectionKey === 'home') {
-          $('#top-nav .nav-item[data-section="home"]').addClass('active');
+          $('#landing').show();
+          $('#detail').hide();
         } else {
-          $('#top-nav .nav-item[data-section="' + sectionKey + '"]').addClass(
-            'active'
-          );
+          $('#top-nav .nav-item[data-section="' + sectionKey + '"]').addClass('active');
         }
       }
 
-      // Landing placeholders click
+      // Landing page placeholder clicks
       $('.placeholder').on('click keypress', function (e) {
         if (e.type === 'click' || (e.type === 'keypress' && (e.key === 'Enter' || e.key === ' '))) {
           const section = $(this).data('section');
@@ -351,12 +358,11 @@
         }
       });
 
-      // Nav items click
+      // Top nav clicks
       $('#top-nav .nav-item').on('click keypress', function (e) {
         if (e.type === 'click' || (e.type === 'keypress' && (e.key === 'Enter' || e.key === ' '))) {
           const section = $(this).data('section');
           if (section === 'home') {
-            // Back to landing
             $('#detail').hide();
             $('#landing').show();
             $('#top-nav .nav-item').removeClass('active');
@@ -366,7 +372,9 @@
         }
       });
 
-      // Accessibility: set tabindex and keyboard events for placeholders & nav items done above
+      // Initially show landing page
+      $('#landing').show();
+      $('#detail').hide();
     });
   </script>
 </body>
